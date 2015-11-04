@@ -34,7 +34,8 @@ classdef (Abstract) Settings < handle
                 settingsKey = matlab.lang.makeValidName(class(obj));
             end
             if nargin < 2
-                settingsGroup = 'appbox';
+                split = strsplit(class(obj), '.');
+                settingsGroup = split{1};
             end
             obj.settingsGroup = settingsGroup;
             obj.settingsPreference = matlab.lang.makeValidName(class(obj));
