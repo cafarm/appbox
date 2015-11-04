@@ -16,7 +16,7 @@ classdef MessageBoxView < appbox.View
     methods
 
         function createUi(obj)
-            import appbox.util.*;
+            import appbox.*;
 
             set(obj.figureHandle, ...
                 'Position', screenCenter(300, 54));
@@ -75,7 +75,7 @@ classdef MessageBoxView < appbox.View
         end
 
         function setButton1Visible(obj, tf)
-            set(obj.button1, 'Visible', appbox.util.onOff(tf));
+            set(obj.button1, 'Visible', appbox.onOff(tf));
         end
 
         function setButton1Default(obj)
@@ -90,7 +90,7 @@ classdef MessageBoxView < appbox.View
         end
 
         function setButton2Visible(obj, tf)
-            set(obj.button2, 'Visible', appbox.util.onOff(tf));
+            set(obj.button2, 'Visible', appbox.onOff(tf));
         end
 
         function setButton2Default(obj)
@@ -105,7 +105,7 @@ classdef MessageBoxView < appbox.View
         end
 
         function setButton3Visible(obj, tf)
-            set(obj.button3, 'Visible', appbox.util.onOff(tf));
+            set(obj.button3, 'Visible', appbox.onOff(tf));
         end
 
         function setButton3Default(obj)

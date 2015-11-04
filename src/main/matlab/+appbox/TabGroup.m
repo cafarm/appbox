@@ -46,7 +46,7 @@ classdef TabGroup < matlab.mixin.SetGet %#ok<*MCSUP>
 
         function e = get.Enable(obj)
             tf = obj.JControl.getEnabled();
-            e = appbox.util.onOff(tf);
+            e = appbox.onOff(tf);
         end
 
         function set.Enable(obj, e)

@@ -96,7 +96,7 @@ classdef Table < matlab.mixin.SetGet %#ok<*MCSUP>
 
         function e = get.Enable(obj)
             jtable = obj.Control.getTable();
-            e = appbox.util.onOff(jtable.getEnabled());
+            e = appbox.onOff(jtable.getEnabled());
         end
 
         function set.Enable(obj, e)
