@@ -19,12 +19,12 @@ classdef MessageBoxView < appbox.View
             import appbox.*;
 
             set(obj.figureHandle, ...
-                'Position', screenCenter(300, 54));
+                'Position', screenCenter(300, 56));
 
             mainLayout = uix.VBox( ...
                 'Parent', obj.figureHandle, ...
                 'Padding', 11, ...
-                'Spacing', 7);
+                'Spacing', 11);
 
             obj.text = TextArea( ...
                 'Parent', mainLayout);
@@ -51,7 +51,7 @@ classdef MessageBoxView < appbox.View
                 'Callback', @(h,d)notify(obj, 'Button1', appbox.EventData(get(obj.button1, 'String'))));
             set(controlsLayout, 'Widths', [-1 75 75 75]);
 
-            set(mainLayout, 'Heights', [-1 25]);
+            set(mainLayout, 'Heights', [-1 23]);
         end
 
         function setTitle(obj, t)
