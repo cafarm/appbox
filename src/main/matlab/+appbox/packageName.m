@@ -9,7 +9,7 @@ function [name, className, parentPath] = packageName(path)
         return;
     end
     [parentPath, name] = strtok(path, '+');
-    [name, className] = fileparts(name);
+    [~, className] = fileparts(name);
     name = regexp(name, '\+(\w)+', 'tokens');
     name = strcat([name{:}], [repmat({'.'},1,numel(name)-1) {''}]);
     name = [name{:}];
