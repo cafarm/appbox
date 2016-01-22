@@ -1,4 +1,4 @@
-% Mimics uicontrol 'text' with the addition of being vertically centered.
+% Mimics uicontrol 'text' with the addition of allowing vertical alignment.
 
 classdef Label < matlab.mixin.SetGet %#ok<*MCSUP>
     
@@ -6,6 +6,7 @@ classdef Label < matlab.mixin.SetGet %#ok<*MCSUP>
         String
         BackgroundColor
         HorizontalAlignment
+        VerticalAlignment
     end
     
     properties (Access = private)
@@ -71,6 +72,32 @@ classdef Label < matlab.mixin.SetGet %#ok<*MCSUP>
                     error('Not supported');
             end
             obj.JControl.setHorizontalAlignment(a);
+        end
+        
+        function a = get.VerticalAlignment(obj)
+            a = obj.JControl.getVerticalAlignment();
+            switch a
+                case javax.swing.SwingConstants.TOP
+                    a = 'top';
+                case javax.swing.SwingConstants.CENTER
+                    a = 'center';
+                case javax.swing.SwingConstants.BOTTOM
+                    a = 'bottom';
+            end
+        end
+        
+        function set.VerticalAlignment(obj, a)
+            switch lower(a)
+                case 'top'
+                    a = javax.swing.SwingConstants.TOP;
+                case 'center'
+                    a = javax.swing.SwingConstants.CENTER;
+                case 'bottom'
+                    a = javax.swing.SwingConstants.BOTTOM;
+                otherwise
+                    error('Not supported');
+            end
+            obj.JControl.setVerticalAlignment(a);
         end
         
     end
