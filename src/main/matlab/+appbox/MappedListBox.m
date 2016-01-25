@@ -39,7 +39,7 @@ classdef MappedListBox < appbox.UIControl %#ok<*MCSUP>
                 return;
             end
             index = get(obj.Control, 'Value');
-            v = obj.Values{index};
+            v = obj.Values(index);
         end
         
         function setValue(obj, value)
