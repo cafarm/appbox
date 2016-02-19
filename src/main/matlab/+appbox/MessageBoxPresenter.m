@@ -30,7 +30,7 @@ classdef MessageBoxPresenter < appbox.Presenter
 
     methods (Access = protected)
 
-        function onGoing(obj)
+        function willGo(obj)
             obj.view.setText(obj.text);
             obj.view.setTitle(obj.title);
             obj.view.setButton1(obj.button1);
@@ -48,7 +48,7 @@ classdef MessageBoxPresenter < appbox.Presenter
             end
         end
 
-        function onGo(obj)
+        function didGo(obj)
             obj.view.update();
             size = obj.view.getTextSize();
             preferred = obj.view.getTextPreferredSize();
@@ -57,7 +57,9 @@ classdef MessageBoxPresenter < appbox.Presenter
             obj.view.position = position;
         end
 
-        function onBind(obj)
+        function bind(obj)
+            bind@appbox.Presenter(obj);
+            
             v = obj.view;
             obj.addListener(v, 'KeyPress', @obj.onViewKeyPress);
             obj.addListener(v, 'Button1', @obj.onViewSelectedButton1);
