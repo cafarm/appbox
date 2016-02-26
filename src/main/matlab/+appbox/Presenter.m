@@ -95,6 +95,12 @@ classdef Presenter < handle
             l = addlistener(varargin{:});
             obj.listeners{end + 1} = l;
         end
+        
+        function removeListener(obj, listener)
+            index = cellfun(@(l)l == listener, obj.listeners);
+            delete(listener);
+            obj.listeners(index) = [];
+        end
 
         function removeAllListeners(obj)
             while ~isempty(obj.listeners)
