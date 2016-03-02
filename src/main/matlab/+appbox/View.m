@@ -96,7 +96,7 @@ classdef View < handle
             if nargin < 7
                 default = 1;
             end
-            presenter = appbox.MessageBoxPresenter(text, title, button1, button2, button3, default);
+            presenter = appbox.MessagePresenter(text, title, button1, button2, button3, default);
             presenter.goWaitStop();
             r = presenter.result;
         end
