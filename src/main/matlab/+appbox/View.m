@@ -100,6 +100,14 @@ classdef View < handle
             presenter.goWaitStop();
             r = presenter.result;
         end
+        
+        function p = showBusy(obj, text, title) %#ok<INUSL>
+            if nargin < 3
+                title = text;
+            end
+            p = appbox.BusyPresenter(text, title);
+            p.go();
+        end
 
         function showWeb(obj, url) %#ok<INUSL>
             web(url);
