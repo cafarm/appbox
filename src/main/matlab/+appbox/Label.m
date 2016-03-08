@@ -7,6 +7,7 @@ classdef Label < matlab.mixin.SetGet %#ok<*MCSUP>
         BackgroundColor
         HorizontalAlignment
         VerticalAlignment
+        Icon
     end
     
     properties (Access = private)
@@ -98,6 +99,10 @@ classdef Label < matlab.mixin.SetGet %#ok<*MCSUP>
                     error('Not supported');
             end
             obj.JControl.setVerticalAlignment(a);
+        end
+        
+        function set.Icon(obj, i)
+            obj.JControl.setIcon(javax.swing.ImageIcon(i));
         end
         
     end
