@@ -1,5 +1,5 @@
 function setIconImage(hUipushtool,imageFileName)
-%SETICONIMAGE  sets the icon of a toolbar pushbutton to the image specified. 
+%SETICONIMAGE  sets the icon of a toolbar pushbutton to the image specified.
 %
 % SETICONIMAGE(HUIPUSHTOOL,IMAGEFILENAME) sets the icon of the HUIPUSHTOOL to the
 % image secifiled by IMAGEFILENAME. HUIPUSHTOOL is a handle to an uipushtool on
@@ -22,7 +22,7 @@ function setIconImage(hUipushtool,imageFileName)
 %   setIconImage(btnExit,'images\exit.png');
 
 % Note:
-% Your can also set the icon of an uipushtool by setting it CData. However, 
+% Your can also set the icon of an uipushtool by setting it CData. However,
 % setIconImage can preserve the transpanrency of the image after it is added on
 % to the uipushtool.
 
@@ -31,7 +31,7 @@ function setIconImage(hUipushtool,imageFileName)
 %   Tianjin University, 300072, P.R. CHINA.
 %   2006/12/01
 
-error(nargchk(2, 2, nargin));
+narginchk(2, 2);
 if ~ishandle(hUipushtool) || ~isequal(get(hUipushtool,'Type'),'uipushtool')
     error('First input argument must be a handle of an uipushtool.');
 end
@@ -50,5 +50,3 @@ jUipushtools = jUitoolbar.getComponentPeer.getComponents;
 numJtools = numel(jUipushtools) - numChild - numSeparator;
 ico = javax.swing.ImageIcon(imageFileName);
 jUipushtools(numJtools+numChild-index+numSeparator+1).setIcon(ico);
-
-
