@@ -14,12 +14,14 @@ classdef HBoxFlex < uix.HBox
     
     properties( Access = public, Dependent, AbortSet )
         DividerMarkings % divider markings [on|off]
+        DividerBackgroundColor
     end
     
     properties( Access = private )
         ColumnDividers = uix.Divider.empty( [0 1] ) % column dividers
         FrontDivider % front divider
         DividerMarkings_ = 'on' % backing for DividerMarkings
+        DividerBackgroundColor_ = [160/255 160/255 160/255];
         LocationObserver % location observer
         MousePressListener = event.listener.empty( [0 0] ) % mouse press listener
         MouseReleaseListener = event.listener.empty( [0 0] ) % mouse release listener
@@ -94,6 +96,22 @@ classdef HBoxFlex < uix.HBox
             obj.Dirty = true;
             
         end % set.DividerMarkings
+        
+        function value = get.DividerBackgroundColor( obj )
+            
+            value = obj.DividerBackgroundColor_;
+            
+        end % get.DividerBackgroundColor
+        
+        function set.DividerBackgroundColor( obj, value )
+            
+            % Set
+            obj.DividerBackgroundColor_ = value;
+            
+            % Mark as dirty
+            obj.Dirty = true;
+            
+        end % set.DividerBackgroundColor
         
     end % accessors
     
@@ -265,7 +283,7 @@ classdef HBoxFlex < uix.HBox
                 for ii = b+1:c
                     divider = uix.Divider( 'Parent', obj, ...
                         'Orientation', 'vertical', ...
-                        'BackgroundColor', obj.BackgroundColor );
+                        'BackgroundColor', obj.DividerBackgroundColor );
                     obj.ColumnDividers(ii,:) = divider;
                 end
                 % Bring front divider to the front
