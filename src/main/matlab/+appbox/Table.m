@@ -8,6 +8,7 @@ classdef Table < matlab.mixin.SetGet %#ok<*MCSUP>
         ColumnWidth
         Enable
         Editable
+        BorderType
         ColumnHeaderVisible % Must be set after the Table is displayed.
     end
 
@@ -34,7 +35,6 @@ classdef Table < matlab.mixin.SetGet %#ok<*MCSUP>
                 'SelectionMode', javax.swing.ListSelectionModel.SINGLE_SELECTION, ...
                 'Buttons', 'off');
             obj.Control.getTableScrollPane.getRowHeader.setVisible(0);
-            obj.Control.getTableScrollPane.setBorder(javax.swing.BorderFactory.createEmptyBorder());
             obj.Control.getTable.getTableHeader.setToolTipText([]);
             obj.Control.getTable.setFillsViewportHeight(true);
             obj.set(p.Unmatched);
@@ -114,6 +114,21 @@ classdef Table < matlab.mixin.SetGet %#ok<*MCSUP>
 
         function set.Editable(obj, tf)
             set(obj.Control, 'Editable', tf);
+        end
+        
+        function t = get.BorderType(obj)
+            % TODO: Implement
+            t = [];
+        end
+        
+        function set.BorderType(obj, t)
+            switch lower(t)
+                case {'none'}
+                    t = javax.swing.BorderFactory.createEmptyBorder();
+                otherwise
+                    error('Not supported');
+            end
+            obj.Control.getTableScrollPane.setBorder(t);
         end
 
         function tf = get.ColumnHeaderVisible(obj)
