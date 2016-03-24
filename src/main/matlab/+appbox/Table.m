@@ -6,6 +6,7 @@ classdef Table < matlab.mixin.SetGet %#ok<*MCSUP>
         Data
         ColumnName
         ColumnWidth
+        RowHeight % Must be set after the Table is displayed.
         Enable
         Editable
         BorderType
@@ -34,9 +35,9 @@ classdef Table < matlab.mixin.SetGet %#ok<*MCSUP>
                 'Headers', p.Results.ColumnName, ...
                 'SelectionMode', javax.swing.ListSelectionModel.SINGLE_SELECTION, ...
                 'Buttons', 'off');
-            obj.Control.getTableScrollPane.getRowHeader.setVisible(0);
-            obj.Control.getTable.getTableHeader.setToolTipText([]);
-            obj.Control.getTable.setFillsViewportHeight(true);
+            obj.Control.getTableScrollPane().getRowHeader().setVisible(0);
+            obj.Control.getTable().getTableHeader().setToolTipText([]);
+            obj.Control.getTable().setFillsViewportHeight(true);
             obj.set(p.Unmatched);
         end
 
@@ -88,6 +89,14 @@ classdef Table < matlab.mixin.SetGet %#ok<*MCSUP>
             for i = 1:nWidths
                 model.getColumn(i - 1).setMaxWidth(widths{i});
             end
+        end
+        
+        function h = get.RowHeight(obj)
+            h = obj.Control.getTable().getRowHeight();
+        end 
+        
+        function set.RowHeight(obj, h)
+            obj.Control.getTable().setRowHeight(h);
         end
 
         function i = get.SelectedRow(obj)
