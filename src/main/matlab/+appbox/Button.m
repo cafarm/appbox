@@ -5,6 +5,8 @@ classdef Button < matlab.mixin.SetGet %#ok<*MCSUP>
     properties
         String
         Icon
+        Enable
+        Visible
         Callback
     end
     
@@ -41,6 +43,22 @@ classdef Button < matlab.mixin.SetGet %#ok<*MCSUP>
         
         function set.Icon(obj, i)
             obj.JControl.setIcon(javax.swing.ImageIcon(i));
+        end
+        
+        function set.Enable(obj, e)
+            obj.JControl.setEnabled(appbox.onOff(e));
+        end
+        
+        function e = get.Enable(obj)
+            e = appbox.onOff(obj.JControl.isEnabled());
+        end
+        
+        function set.Visible(obj, v)
+            obj.JControl.setVisible(appbox.onOff(v));
+        end
+        
+        function v = get.Visible(obj)
+            v = appbox.onOff(obj.JControl.isVisible());
         end
         
         function set.Callback(obj, c)
