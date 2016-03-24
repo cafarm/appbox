@@ -20,11 +20,14 @@ classdef Button < matlab.mixin.SetGet %#ok<*MCSUP>
             p.KeepUnmatched = true;
             p.addOptional('Parent', get(groot, 'CurrentFigure'));
             p.parse(varargin{:});
-            [obj.JControl, obj.Control] = javacomponent(javax.swing.JButton(), [], p.Results.Parent);
-            obj.JControl.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+            [obj.JControl, obj.Control] = javacomponent(com.mathworks.mwswing.MJButton(), [], p.Results.Parent);
             obj.JControl.setBorderPainted(false);
-            obj.JControl.setContentAreaFilled(false);
-            obj.JControl.setFocusPainted(false);
+            obj.JControl.setDefaultCapable(false);
+            obj.JControl.setFocusTraversable(false);
+            obj.JControl.setFocusable(false);
+            obj.JControl.setRequestFocusEnabled(false);
+            obj.JControl.setFlyOverAppearance(true);
+            obj.JControl.setOpaque(false);
             obj.set(p.Unmatched);
         end
         
