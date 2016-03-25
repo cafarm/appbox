@@ -20,7 +20,7 @@ classdef Menu < matlab.mixin.SetGet
         end
         
         function delete(obj)
-            obj.Close();
+            obj.close();
         end
         
         function close(obj)
