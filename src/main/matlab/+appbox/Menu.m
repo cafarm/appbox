@@ -15,7 +15,9 @@ classdef Menu < matlab.mixin.SetGet
         function obj = Menu(figureHandle)
             drawnow;
             obj.FigureHandle = figureHandle;
+            warning('off','MATLAB:HandleGraphics:ObsoletedProperty:JavaFrame');
             jFrame = get(handle(figureHandle), 'JavaFrame');
+            warning('on','MATLAB:HandleGraphics:ObsoletedProperty:JavaFrame');
             obj.Control = jFrame.fHG2Client.getMenuBar();
         end
         
