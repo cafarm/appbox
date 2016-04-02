@@ -4,6 +4,7 @@ classdef Button < matlab.mixin.SetGet %#ok<*MCSUP>
     
     properties
         String
+        TooltipString
         Icon
         Enable
         Visible
@@ -39,6 +40,14 @@ classdef Button < matlab.mixin.SetGet %#ok<*MCSUP>
         
         function set.String(obj, s)
             obj.JControl.setText(s);
+        end
+        
+        function s = get.TooltipString(obj)
+            s = char(obj.JControl.getToolTipText());
+        end
+        
+        function set.TooltipString(obj, s)
+            obj.JControl.setToolTipText(s);
         end
         
         function set.Icon(obj, i)
