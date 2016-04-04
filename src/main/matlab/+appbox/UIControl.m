@@ -3,6 +3,7 @@
 classdef UIControl < matlab.mixin.SetGet %#ok<*MCSUP>
     
     properties
+        Parent
         String
         Callback
         Enable
@@ -19,6 +20,14 @@ classdef UIControl < matlab.mixin.SetGet %#ok<*MCSUP>
         
         function obj = UIControl(varargin)
             obj.Control = uicontrol(varargin{:});
+        end
+        
+        function p = get.Parent(obj)
+            p = get(obj.Control, 'Parent');
+        end
+        
+        function set.Parent(obj, p)
+            set(obj.Control, 'Parent', p);
         end
         
         function s = get.String(obj)
