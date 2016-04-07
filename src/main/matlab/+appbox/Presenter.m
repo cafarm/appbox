@@ -30,7 +30,9 @@ classdef Presenter < handle
         end
 
         function delete(obj)
-            obj.stop();
+            if ~obj.isStopped
+                obj.stop();
+            end
         end
 
         function go(obj)
@@ -41,9 +43,6 @@ classdef Presenter < handle
         end
 
         function stop(obj)
-            if obj.isStopped
-                return;
-            end
             obj.willStop();
             obj.unbind();
             obj.view.close();

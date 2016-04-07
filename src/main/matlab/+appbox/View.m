@@ -8,6 +8,10 @@ classdef View < handle
     properties
         position
     end
+    
+    properties (SetAccess = private)
+        isClosed
+    end
 
     properties (Access = protected)
         figureHandle
@@ -44,7 +48,9 @@ classdef View < handle
         end
 
         function delete(obj)
-            obj.close();
+            if ~obj.isClosed;
+                obj.close();
+            end
         end
 
         function setWindowStyle(obj, s)
@@ -62,6 +68,10 @@ classdef View < handle
 
         function close(obj)
             delete(obj.figureHandle);
+        end
+        
+        function tf = get.isClosed(obj)
+            tf = ~isvalid(obj.figureHandle);
         end
 
         function wait(obj)
