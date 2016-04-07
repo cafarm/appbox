@@ -2,20 +2,22 @@ package UIExtrasComboBox;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Vector;
 
-public class SeparatorListCellRenderer implements ListCellRenderer {
+public class SeparatorListCellRenderer extends Component implements ListCellRenderer {
     private ListCellRenderer delegate;
     private JPanel separatorPanel = new JPanel(new BorderLayout());
     private JSeparator separator = new JSeparator();
-    private Vector<Integer> separatorIndices = new Vector<Integer>();
+    private ArrayList<Integer> separatorIndices = new ArrayList<Integer>();
 
     public SeparatorListCellRenderer(ListCellRenderer delegate) {
         this.delegate = delegate;
     }
 
-    public void setSeparatorIndices(Vector<Integer> indices) {
-        this.separatorIndices = indices;
+    public void setSeparatorIndices(Integer[] indices) {
+        this.separatorIndices = new ArrayList<Integer>(Arrays.asList(indices));
     }
 
     @Override

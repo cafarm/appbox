@@ -42,6 +42,19 @@ classdef MappedPopupMenu < appbox.UIControl %#ok<*MCSUP>
             index = find(cellfun(@(v)isequal(v, value), obj.Values));
             set(obj.Control, 'Value', index)
         end
+        
+        function setSeparatorIndices(obj, indices)
+            renderer = obj.JControl.getRenderer();
+            if ~ismethod(renderer, 'setSeparatorIndices')
+                renderer = UIExtrasComboBox.SeparatorListCellRenderer(renderer);
+            end
+            jindices = javaArray('java.lang.Integer', numel(indices));
+            for i = 1:numel(indices)
+                jindices(i) = java.lang.Integer(indices(i) - 1);
+            end
+            renderer.setSeparatorIndices(jindices);
+            obj.JControl.setRenderer(renderer);
+        end
 
     end
 

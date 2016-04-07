@@ -9,6 +9,7 @@ classdef UIControl < matlab.mixin.SetGet %#ok<*MCSUP>
         Enable
         Value
         UIContextMenu
+        GetJControlFcn
     end
     
     properties (Access = protected)
@@ -20,6 +21,7 @@ classdef UIControl < matlab.mixin.SetGet %#ok<*MCSUP>
         
         function obj = UIControl(varargin)
             obj.Control = uicontrol(varargin{:});
+            obj.GetJControlFcn = @(c)findjobj(c);
         end
         
         function p = get.Parent(obj)
@@ -28,6 +30,7 @@ classdef UIControl < matlab.mixin.SetGet %#ok<*MCSUP>
         
         function set.Parent(obj, p)
             set(obj.Control, 'Parent', p);
+            obj.JControl = [];
         end
         
         function s = get.String(obj)
@@ -92,7 +95,7 @@ classdef UIControl < matlab.mixin.SetGet %#ok<*MCSUP>
         
         function c = get.JControl(obj)
             if isempty(obj.JControl)
-                obj.JControl = findjobj(obj.Control);
+                obj.JControl = obj.GetJControlFcn(obj.Control);
             end
             c = obj.JControl;
         end
