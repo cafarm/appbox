@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="UIExtrasComboBox">
+    <output-path>$PROJECT_DIR$/out/artifacts/UIExtrasComboBox</output-path>
+    <root id="archive" name="UIExtrasComboBox.jar">
+      <element id="module-output" name="UIExtrasComboBox" />
+    </root>
+  </artifact>
+</component>
