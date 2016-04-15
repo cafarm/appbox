@@ -119,8 +119,8 @@ classdef View < handle
             p.go();
         end
 
-        function showWeb(obj, url) %#ok<INUSL>
-            web(url);
+        function showWeb(obj, url, varargin) %#ok<INUSL>
+            web(url, varargin{:});
         end
 
         function p = showGetDirectory(obj, title, startPath) %#ok<INUSL>
