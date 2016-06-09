@@ -20,11 +20,18 @@ classdef TextArea < matlab.mixin.SetGet %#ok<*MCSUP>
             p = inputParser();
             p.KeepUnmatched = true;
             p.addOptional('Parent', get(groot, 'CurrentFigure'));
+            p.addOptional('Scrollable', false);
             p.parse(varargin{:});
-            [obj.JControl, obj.Control] = javacomponent(javax.swing.JTextArea(), [], p.Results.Parent);
+            if p.Results.Scrollable
+                [obj.JControl, obj.Control] = javacomponent(javax.swing.JScrollPane(javax.swing.JTextArea()), [], p.Results.Parent);
+                obj.JControl = obj.JControl.getComponent(0).getComponent(0);
+                obj.Opaque = true;
+            else
+                [obj.JControl, obj.Control] = javacomponent(javax.swing.JTextArea(), [], p.Results.Parent);
+                obj.Opaque = false;
+            end
             obj.WrapStyleWord = true;
             obj.Editable = false;
-            obj.Opaque = false;
             obj.set(p.Unmatched);
         end
         
