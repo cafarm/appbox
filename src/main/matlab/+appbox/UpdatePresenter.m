@@ -66,6 +66,7 @@ classdef UpdatePresenter < appbox.Presenter
                 return;
             end
             
+            obj.result = true;
             obj.stop();
         end
         
