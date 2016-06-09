@@ -7,7 +7,7 @@ classdef UpdateView < appbox.View
     
     properties (Access = private)
         titleLabel
-        bodyLabel
+        bodyText
         releaseNotesText
         installButton
         laterButton
@@ -20,7 +20,7 @@ classdef UpdateView < appbox.View
             
             set(obj.figureHandle, ...
                 'Name', 'Software Update', ...
-                'Position', screenCenter(550, 200));
+                'Position', screenCenter(400, 250));
             
             mainLayout = uix.VBox( ...
                 'Parent', obj.figureHandle, ...
@@ -33,7 +33,7 @@ classdef UpdateView < appbox.View
             obj.titleLabel = Label( ...
                 'Parent', updateLayout, ...
                 'String', '');
-            obj.bodyLabel = Label( ...
+            obj.bodyText = TextArea( ...
                 'Parent', updateLayout, ...
                 'String', '');
             Label( ...
@@ -42,7 +42,7 @@ classdef UpdateView < appbox.View
             obj.releaseNotesText = TextArea( ...
                 'Parent', updateLayout, ...
                 'Scrollable', true);
-            set(updateLayout, 'Heights', [16, 16, 16, -1]);
+            set(updateLayout, 'Heights', [16, 32, 16, -1]);
             
             % Install/Later controls.
             controlsLayout = uix.HBox( ...
@@ -77,7 +77,7 @@ classdef UpdateView < appbox.View
         end
         
         function setBody(obj, t)
-            set(obj.bodyLabel, 'String', t);
+            set(obj.bodyText, 'String', t);
         end
         
         function setReleaseNotes(obj, n)

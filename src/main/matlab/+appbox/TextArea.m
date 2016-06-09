@@ -28,6 +28,7 @@ classdef TextArea < matlab.mixin.SetGet %#ok<*MCSUP>
                 obj.Opaque = true;
             else
                 [obj.JControl, obj.Control] = javacomponent(javax.swing.JTextArea(), [], p.Results.Parent);
+                obj.JControl.setBorder([]);
                 obj.Opaque = false;
             end
             obj.WrapStyleWord = true;

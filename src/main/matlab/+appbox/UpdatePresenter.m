@@ -25,7 +25,7 @@ classdef UpdatePresenter < appbox.Presenter
             update = obj.updater.update;
             obj.view.setTitle(['A new version of ' host.name ' is available!']);
             obj.view.setBody([host.name ' ' update.tag_name ' is now available. You have ' host.version '. ', ...
-                'Would you like to download it now?']);
+                'Would you like to download and install it now?']);
             obj.view.setReleaseNotes(update.body);
         end
         

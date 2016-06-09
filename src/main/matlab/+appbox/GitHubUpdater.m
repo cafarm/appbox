@@ -23,7 +23,11 @@ classdef GitHubUpdater < handle
             url = ['https://api.github.com/repos/' owner '/' repo '/releases/latest'];
             
             tf = false;
-            data = webread(url, 'ContentType', 'json');
+            try
+                data = webread(url, 'ContentType', 'json');
+            catch
+                return;
+            end
             if obj.versionCompareFcn(data.tag_name, host.version) <= 0
                 return;
             end
