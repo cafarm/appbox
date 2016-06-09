@@ -62,17 +62,19 @@ classdef GitHubUpdater < handle
             obj.download = websave(filename, asset.browser_download_url);
         end
         
-        function installUpdate(obj)
+        function id = installUpdate(obj)
             if isempty(obj.download)
                 error('No download available');
             end
             
             [~, ~, ext] = fileparts(obj.download);
             if strcmpi(ext, '.mltbx')
-                matlab.addons.toolbox.installToolbox(obj.download);
+                t = matlab.addons.toolbox.installToolbox(obj.download);
+                id = t.Guid;
             else
-                appinfo = matlab.apputil.install(obj.download);
-                addpath(genpath(appinfo.location));
+                a = matlab.apputil.install(obj.download);
+                addpath(genpath(a.location));
+                id = a.id;
             end
         end
         

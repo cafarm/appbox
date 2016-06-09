@@ -58,7 +58,7 @@ classdef UpdatePresenter < appbox.Presenter
                 delete(p);
                 
                 p = obj.view.showBusy('This may take a moment.', 'Installing...');
-                obj.updater.installUpdate();
+                id = obj.updater.installUpdate();
                 delete(p);
             catch x
                 delete(p);
@@ -66,7 +66,7 @@ classdef UpdatePresenter < appbox.Presenter
                 return;
             end
             
-            obj.result = true;
+            obj.result = id;
             obj.stop();
         end
         
