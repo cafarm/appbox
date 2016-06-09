@@ -71,7 +71,8 @@ classdef GitHubUpdater < handle
             if strcmpi(ext, '.mltbx')
                 matlab.addons.toolbox.installToolbox(obj.download);
             else
-                matlab.apputil.install(obj.download);
+                appinfo = matlab.apputil.install(obj.download);
+                addpath(genpath(appinfo.location));
             end
         end
         
