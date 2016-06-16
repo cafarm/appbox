@@ -8,6 +8,8 @@ classdef UIControl < matlab.mixin.SetGet %#ok<*MCSUP>
         Callback
         Enable
         Value
+        ForegroundColor
+        BackgroundColor
         UIContextMenu
         GetJControlFcn
     end
@@ -79,6 +81,22 @@ classdef UIControl < matlab.mixin.SetGet %#ok<*MCSUP>
         
         function setValue(obj, v)
             set(obj.Control, 'Value', v);
+        end
+        
+        function c = get.ForegroundColor(obj)
+            c = get(obj.Control, 'ForegroundColor');
+        end
+        
+        function set.ForegroundColor(obj, c)
+            set(obj.Control, 'ForegroundColor', c);
+        end
+        
+        function c = get.BackgroundColor(obj)
+            c = get(obj.Control, 'BackgroundColor');
+        end
+        
+        function set.BackgroundColor(obj, c)
+            set(obj.Control, 'BackgroundColor', c);
         end
         
         function m = get.UIContextMenu(obj)
