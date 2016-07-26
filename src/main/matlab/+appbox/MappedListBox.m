@@ -1,6 +1,5 @@
-% Mimics uicontrol 'listbox' with the addition of being able to define a values array.
-
 classdef MappedListBox < appbox.UIControl %#ok<*MCSUP>
+    % Mimics uicontrol 'listbox' with the addition of being able to define a values array.
     
     properties
         Values

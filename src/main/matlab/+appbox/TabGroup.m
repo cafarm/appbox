@@ -1,7 +1,6 @@
-% Mimics uitabgroup with the addition of being able to enable/disable.
-
 classdef TabGroup < matlab.mixin.SetGet %#ok<*MCSUP>
-
+    % Mimics uitabgroup with the addition of being able to enable/disable.
+    
     properties
         Parent
         Enable

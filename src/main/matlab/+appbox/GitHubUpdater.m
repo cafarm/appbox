@@ -16,9 +16,11 @@ classdef GitHubUpdater < handle
             obj.versionCompareFcn = @(a,b)compareVersions(a,b);
         end
         
-        % Returns true if an update is available. owner should be the GitHub repo owner. repo should be the GitHub repo 
-        % name. host should be a struct with fields 'name' and 'version' containing the name and version of the host app.
         function tf = checkForUpdates(obj, owner, repo, host)
+            % Returns true if an update is available. owner should be the GitHub repo owner. repo should be the GitHub 
+            % repo name. host should be a struct with fields 'name' and 'version' containing the name and version of 
+            % the host app.
+            
             obj.host = host;
             url = ['https://api.github.com/repos/' owner '/' repo '/releases/latest'];
             

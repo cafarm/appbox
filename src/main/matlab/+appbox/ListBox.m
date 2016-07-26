@@ -1,7 +1,6 @@
-% Mimics uicontrol 'listbox'.
-
 classdef ListBox < appbox.UIControl %#ok<*MCSUP>
-
+    % Mimics uicontrol 'listbox'.
+    
     methods
         
         function obj = ListBox(varargin)

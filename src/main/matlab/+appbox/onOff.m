@@ -1,6 +1,6 @@
-% Converts logicals to 'on'/'off' and vice versa.
-
 function output = onOff(input)
+    % Converts logicals to 'on'/'off' and vice versa.
+    
     if ischar(input)
         if strcmpi(input, 'on')
             output = true;

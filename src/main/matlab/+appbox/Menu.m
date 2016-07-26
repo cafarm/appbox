@@ -1,6 +1,5 @@
-% A uimenu alternative.
-
 classdef Menu < matlab.mixin.SetGet
+    % A uimenu alternative.
     
     properties
     end

@@ -1,6 +1,5 @@
-% Mimics uicontrol to enable extensibility.
-
 classdef UIControl < matlab.mixin.SetGet %#ok<*MCSUP>
+    % Mimics uicontrol to enable extensibility.
     
     properties
         Parent

@@ -1,7 +1,7 @@
-% Gets the package name given a path.
-% \doc\+appbox\+test\Wow.m => appbox.test
-
 function [name, className, parentPath] = packageName(path)
+    % Gets the package name given a path.
+    % \doc\+appbox\+test\Wow.m => appbox.test
+    
     if isempty(path)
         name = [];
         className = [];

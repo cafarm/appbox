@@ -1,7 +1,7 @@
-% epochGroup => Epoch group
-% epoch_group => Epoch group
-
 function out = humanize(in)
+    % epochGroup => Epoch group
+    % epoch_group => Epoch group
+
     % To camelCase.
     out = regexprep(in, '_+(\w?)', '${upper($1)}');
     

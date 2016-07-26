@@ -1,7 +1,6 @@
-% Mimics uicontrol 'popupmenu' with the addition of being able to define a values array.
-
 classdef MappedPopupMenu < appbox.UIControl %#ok<*MCSUP>
-
+    % Mimics uicontrol 'popupmenu' with the addition of being able to define a values array.
+    
     properties
         Values
     end

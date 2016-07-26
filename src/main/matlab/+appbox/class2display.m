@@ -1,7 +1,7 @@
-% edu.washington.riekelab.protocols.LedPulseFamily => Led pulse family
-% 'pack1.Wow', 'pack1.Hello', 'pack2.Hello' => Wow, Hello (pack1.Hello), Hello (pack2.Hello)
-
 function displayNames = class2display(classNames, capitalize)
+    % edu.washington.riekelab.protocols.LedPulseFamily => Led pulse family
+    % 'pack1.Wow', 'pack1.Hello', 'pack2.Hello' => Wow, Hello (pack1.Hello), Hello (pack2.Hello)
+    
     if nargin < 2
         capitalize = false;
     end

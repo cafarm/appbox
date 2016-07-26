@@ -1,7 +1,6 @@
-% Mimics uicontrol 'edit' with the addition of being able to define an autocompletion list.
-
 classdef IntelliHintsTextField < appbox.UIControl %#ok<*MCSUP>
-
+    % Mimics uicontrol 'edit' with the addition of being able to define an autocompletion list.
+    
     properties
         CompletionList
     end

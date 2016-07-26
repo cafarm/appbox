@@ -1,6 +1,5 @@
-% Mimics uicontrol 'text' with the addition of allowing vertical alignment.
-
 classdef Label < matlab.mixin.SetGet %#ok<*MCSUP>
+    % Mimics uicontrol 'text' with the addition of allowing vertical alignment.
     
     properties
         String

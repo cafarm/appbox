@@ -1,6 +1,5 @@
-% Mimics uicontrol 'pushbutton' without a border.
-
 classdef Button < matlab.mixin.SetGet %#ok<*MCSUP>
+    % Mimics uicontrol 'pushbutton' without a border.
     
     properties
         String
