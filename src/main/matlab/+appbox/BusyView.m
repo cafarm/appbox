@@ -11,7 +11,7 @@ classdef BusyView < appbox.View
             import appbox.*;
 
             set(obj.figureHandle, ...
-                'Position', screenCenter(210, 45));
+                'Position', screenCenter(230, 45));
 
             mainLayout = uix.HBox( ...
                 'Parent', obj.figureHandle, ...
@@ -34,7 +34,7 @@ classdef BusyView < appbox.View
             
             uix.Empty('Parent', mainLayout);
             
-            set(mainLayout, 'Widths', [-1 32 150 -1]);
+            set(mainLayout, 'Widths', [-1 32 170 -1]);
         end
         
         function setTitle(obj, t)

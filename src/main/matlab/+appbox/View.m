@@ -35,8 +35,8 @@ classdef View < handle
                 set(obj.figureHandle, 'DefaultUicontrolFontName', 'Segoe UI');
                 set(obj.figureHandle, 'DefaultUicontrolFontSize', 9);
             elseif ismac
-                set(obj.figureHandle, 'DefaultUicontrolFontName', 'Helvetica Neue');
-                set(obj.figureHandle, 'DefaultUicontrolFontSize', 12);
+                set(obj.figureHandle, 'DefaultUicontrolFontName', 'San Francisco');
+                set(obj.figureHandle, 'DefaultUicontrolFontSize', 13);
             end
 
             try
