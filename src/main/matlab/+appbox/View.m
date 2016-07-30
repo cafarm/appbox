@@ -32,9 +32,12 @@ classdef View < handle
                 'CloseRequestFcn', @(h,d)notify(obj, 'Close'));
 
             font = javax.swing.UIManager.getDefaults().getFont('Panel.font');
-            set(obj.figureHandle, 'DefaultUicontrolFontName', char(font.getName()));
-            set(obj.figureHandle, 'DefaultUicontrolFontSize', font.getSize());
-            set(obj.figureHandle, 'DefaultUicontrolFontUnits', 'pixels');
+            for c = {'Uicontrol', 'Uitable', 'Uipanel', 'Uibuttongroup', 'Axes'}
+                c = c{1}; %#ok<FXSET>
+                set(obj.figureHandle, ['Default' c 'FontName'], char(font.getName()));
+                set(obj.figureHandle, ['Default' c 'FontSize'], font.getSize());
+                set(obj.figureHandle, ['Default' c 'FontUnits'], 'pixels');
+            end
 
             try
                 obj.createUi();
