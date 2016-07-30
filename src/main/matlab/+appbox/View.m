@@ -8,7 +8,7 @@ classdef View < handle
     properties
         position
     end
-    
+
     properties (SetAccess = private)
         isClosed
     end
@@ -30,7 +30,7 @@ classdef View < handle
                 'Interruptible', 'off', ...
                 'WindowKeyPressFcn', @(h,d)notify(obj, 'KeyPress', appbox.EventData(d)), ...
                 'CloseRequestFcn', @(h,d)notify(obj, 'Close'));
-            
+
             font = javax.swing.UIManager.getDefaults().getFont('Panel.font');
             set(obj.figureHandle, 'DefaultUicontrolFontName', char(font.getName()));
             set(obj.figureHandle, 'DefaultUicontrolFontSize', font.getSize());
@@ -66,7 +66,7 @@ classdef View < handle
         function close(obj)
             delete(obj.figureHandle);
         end
-        
+
         function tf = get.isClosed(obj)
             tf = ~isvalid(obj.figureHandle);
         end
@@ -107,12 +107,9 @@ classdef View < handle
             presenter.goWaitStop();
             r = presenter.result;
         end
-        
-        function p = showBusy(obj, text, title) %#ok<INUSL>
-            if nargin < 3
-                title = text;
-            end
-            p = appbox.BusyPresenter(text, title);
+
+        function p = showBusy(obj, title) %#ok<INUSL>
+            p = appbox.BusyPresenter(title);
             p.go();
         end
 

@@ -1,21 +1,24 @@
 classdef BusyPresenter < appbox.Presenter
 
     properties (Access = private)
-        text
         title
+        text
     end
 
     methods
 
-        function obj = BusyPresenter(text, title, view)
+        function obj = BusyPresenter(title, text, view)
+            if nargin < 2
+                text = 'This may take a moment.';
+            end
             if nargin < 3
                 view = appbox.BusyView();
             end
             obj = obj@appbox.Presenter(view);
             obj.view.setWindowStyle('modal');
             
-            obj.text = text;
             obj.title = title;
+            obj.text = text;
         end
 
     end
@@ -23,8 +26,8 @@ classdef BusyPresenter < appbox.Presenter
     methods (Access = protected)
 
         function willGo(obj)
-            obj.view.setText(obj.text);
             obj.view.setTitle(obj.title);
+            obj.view.setText(obj.text);
         end
         
         function onViewSelectedClose(obj, ~, ~) %#ok<INUSD>
