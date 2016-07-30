@@ -30,14 +30,11 @@ classdef View < handle
                 'Interruptible', 'off', ...
                 'WindowKeyPressFcn', @(h,d)notify(obj, 'KeyPress', appbox.EventData(d)), ...
                 'CloseRequestFcn', @(h,d)notify(obj, 'Close'));
-
-            if ispc
-                set(obj.figureHandle, 'DefaultUicontrolFontName', 'Segoe UI');
-                set(obj.figureHandle, 'DefaultUicontrolFontSize', 9);
-            elseif ismac
-                set(obj.figureHandle, 'DefaultUicontrolFontName', 'San Francisco');
-                set(obj.figureHandle, 'DefaultUicontrolFontSize', 13);
-            end
+            
+            font = javax.swing.UIManager.getDefaults().getFont('Panel.font');
+            set(obj.figureHandle, 'DefaultUicontrolFontName', char(font.getName()));
+            set(obj.figureHandle, 'DefaultUicontrolFontSize', font.getSize());
+            set(obj.figureHandle, 'DefaultUicontrolFontUnits', 'pixels');
 
             try
                 obj.createUi();
