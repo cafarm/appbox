@@ -22,7 +22,7 @@ function p = hpix(c, fig)
         graphics = jf.fHG2Client.getGraphics;
         font = javax.swing.UIManager.getDefaults().getFont('Panel.font');
         metrics = graphics.getFontMetrics(font);
-        width = metrics.stringWidth('x');
+        width = metrics.charWidth('m');
     end
     p = c * width;
 end
