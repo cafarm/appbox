@@ -10,12 +10,8 @@ classdef BusyView < appbox.View
         function createUi(obj)
             import appbox.*;
             
-            width = 210;
-            if ismac
-                width = width + 20;
-            end
             set(obj.figureHandle, ...
-                'Position', screenCenter(width, 45));
+                'Position', screenCenter(hpix(42), vpix(2.8125)));
 
             mainLayout = uix.HBox( ...
                 'Parent', obj.figureHandle, ...
@@ -38,7 +34,7 @@ classdef BusyView < appbox.View
             
             uix.Empty('Parent', mainLayout);
             
-            set(mainLayout, 'Widths', [-1 32 width-60 -1]);
+            set(mainLayout, 'Widths', [-1 32 hpix(30) -1]);
         end
         
         function setTitle(obj, t)
