@@ -541,4 +541,8 @@ else
     o = 16;
 end
 
+if ismac
+    o = o + 4;
+end
+
 end % margin
