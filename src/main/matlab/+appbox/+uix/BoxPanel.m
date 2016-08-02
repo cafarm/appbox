@@ -410,7 +410,7 @@ classdef BoxPanel < uix.Panel & uix.mixin.Panel
                 obj.TitleHeight_ = tH; % store
             end
             tY = 1 + bounds(4) - tH;
-            obj.TitleBox.Position = [tX tY tW tH];
+            obj.TitleBox.Position = [tX tY tW+20 tH];
             obj.redrawButtons()
             
             % Position contents
