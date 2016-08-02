@@ -19,7 +19,7 @@ classdef MessageView < appbox.View
             import appbox.*;
 
             set(obj.figureHandle, ...
-                'Position', screenCenter(300, 58));
+                'Position', screenCenter(hpix(300/11), vpix(58/16)));
 
             mainLayout = uix.VBox( ...
                 'Parent', obj.figureHandle, ...
@@ -49,9 +49,9 @@ classdef MessageView < appbox.View
                 'Style', 'pushbutton', ...
                 'Interruptible', 'off', ...
                 'Callback', @(h,d)notify(obj, 'Button1', appbox.EventData(get(obj.button1, 'String'))));
-            set(controlsLayout, 'Widths', [-1 75 75 75]);
+            set(controlsLayout, 'Widths', [-1 hpix(75/11) hpix(75/11) hpix(75/11)]);
 
-            set(mainLayout, 'Heights', [-1 23]);
+            set(mainLayout, 'Heights', [-1 vpix(23/16)]);
         end
 
         function setTitle(obj, t)

@@ -20,7 +20,7 @@ classdef UpdateView < appbox.View
             
             set(obj.figureHandle, ...
                 'Name', 'Software Update', ...
-                'Position', screenCenter(450, 250));
+                'Position', screenCenter(hpix(450/11), vpix(250/16)));
             
             mainLayout = uix.VBox( ...
                 'Parent', obj.figureHandle, ...
@@ -42,7 +42,7 @@ classdef UpdateView < appbox.View
             obj.releaseNotesText = TextArea( ...
                 'Parent', updateLayout, ...
                 'Scrollable', true);
-            set(updateLayout, 'Heights', [16, 32, 16, -1]);
+            set(updateLayout, 'Heights', [vpix(16/11) vpix(32/11) vpix(16/11) -1]);
             
             % Install/Later controls.
             controlsLayout = uix.HBox( ...
@@ -61,9 +61,9 @@ classdef UpdateView < appbox.View
                 'String', 'Later', ...
                 'Interruptible', 'off', ...
                 'Callback', @(h,d)notify(obj, 'Later'));
-            set(controlsLayout, 'Widths', [-1 75 75]);
+            set(controlsLayout, 'Widths', [-1 hpix(75/11) hpix(75/11)]);
 
-            set(mainLayout, 'Heights', [-1 23]);
+            set(mainLayout, 'Heights', [-1 vpix(23/16)]);
             
             % Set add button to appear as the default button.
             try %#ok<TRYNC>
