@@ -39,6 +39,7 @@ classdef Button < matlab.mixin.SetGet %#ok<*MCSUP>
         
         function set.String(obj, s)
             obj.JControl.setText(s);
+            obj.JControl.setFont(javax.swing.UIManager.getDefaults().getFont('Button.font'));
         end
         
         function s = get.TooltipString(obj)
