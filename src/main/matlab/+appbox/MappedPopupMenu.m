@@ -54,6 +54,10 @@ classdef MappedPopupMenu < appbox.UIControl %#ok<*MCSUP>
             renderer.setSeparatorIndices(jindices);
             obj.JControl.setRenderer(renderer);
         end
+        
+        function installSearchable(obj)
+            com.jidesoft.swing.SearchableUtils.installSearchable(obj.JControl);
+        end
 
     end
 
