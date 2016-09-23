@@ -60,9 +60,9 @@ classdef MessagePresenter < appbox.Presenter
             obj.view.update();
             size = obj.view.getTextSize();
             preferred = obj.view.getTextPreferredSize();
-            position = obj.view.position;
-            position(3:4) = position(3:4) + (preferred - size);
-            obj.view.position = position;
+            p = obj.view.position;
+            d = preferred - size;
+            obj.view.position = p + [-d(1)/2 -d(2)/2 d(1) d(2)];
         end
 
         function bind(obj)
