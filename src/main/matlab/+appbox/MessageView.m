@@ -53,6 +53,12 @@ classdef MessageView < appbox.View
 
             set(mainLayout, 'Heights', [-1 vpix(23/16)]);
         end
+        
+        function setViewWidth(obj, w)
+            p = get(obj.figureHandle, 'Position');
+            delta = p(3) - w;
+            set(obj.figureHandle, 'Position', p + [delta/2 0 -delta 0]);
+        end
 
         function setTitle(obj, t)
             set(obj.figureHandle, 'Name', t);

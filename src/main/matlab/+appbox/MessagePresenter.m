@@ -7,12 +7,16 @@ classdef MessagePresenter < appbox.Presenter
         button2
         button3
         default
+        width
     end
 
     methods
 
-        function obj = MessagePresenter(text, title, button1, button2, button3, default, view)
+        function obj = MessagePresenter(text, title, button1, button2, button3, default, width, view)
             if nargin < 7
+                width = [];
+            end
+            if nargin < 8
                 view = appbox.MessageView();
             end
             obj = obj@appbox.Presenter(view);
@@ -24,6 +28,7 @@ classdef MessagePresenter < appbox.Presenter
             obj.button2 = button2;
             obj.button3 = button3;
             obj.default = default;
+            obj.width = width;
         end
 
     end
@@ -45,6 +50,9 @@ classdef MessagePresenter < appbox.Presenter
                 obj.view.setButton2Default();
             elseif obj.default == 3
                 obj.view.setButton3Default();
+            end
+            if ~isempty(obj.width)
+                obj.view.setViewWidth(obj.width);
             end
         end
 
