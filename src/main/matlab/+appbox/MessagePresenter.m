@@ -8,15 +8,19 @@ classdef MessagePresenter < appbox.Presenter
         button3
         default
         width
+        checkbox
     end
 
     methods
 
-        function obj = MessagePresenter(text, title, button1, button2, button3, default, width, view)
+        function obj = MessagePresenter(text, title, button1, button2, button3, default, width, checkbox, view)
             if nargin < 7
                 width = [];
             end
             if nargin < 8
+                checkbox = [];
+            end
+            if nargin < 9
                 view = appbox.MessageView();
             end
             obj = obj@appbox.Presenter(view);
@@ -29,6 +33,7 @@ classdef MessagePresenter < appbox.Presenter
             obj.button3 = button3;
             obj.default = default;
             obj.width = width;
+            obj.checkbox = checkbox;
         end
 
     end
@@ -54,6 +59,8 @@ classdef MessagePresenter < appbox.Presenter
             if ~isempty(obj.width)
                 obj.view.setViewWidth(obj.width);
             end
+            obj.view.setCheckbox(obj.checkbox);
+            obj.view.setCheckboxVisible(~isempty(obj.checkbox));
         end
 
         function didGo(obj)
@@ -95,17 +102,17 @@ classdef MessagePresenter < appbox.Presenter
         end
 
         function onViewSelectedButton1(obj, ~, ~)
-            obj.result = obj.button1;
+            obj.result = {obj.button1, obj.view.getCheckboxValue()};
             obj.stop();
         end
 
         function onViewSelectedButton2(obj, ~, ~)
-            obj.result = obj.button2;
+            obj.result = {obj.button2, obj.view.getCheckboxValue()};
             obj.stop();
         end
 
         function onViewSelectedButton3(obj, ~, ~)
-            obj.result = obj.button3;
+            obj.result = {obj.button3, obj.view.getCheckboxValue()};
             obj.stop();
         end
 

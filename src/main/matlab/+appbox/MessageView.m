@@ -11,6 +11,8 @@ classdef MessageView < appbox.View
         button1
         button2
         button3
+        checkbox
+        controlsLayout
     end
 
     methods
@@ -19,7 +21,7 @@ classdef MessageView < appbox.View
             import appbox.*;
 
             set(obj.figureHandle, ...
-                'Position', screenCenter(hpix(300/11), vpix(58/16)));
+                'Position', screenCenter(hpix(400/11), vpix(58/16)));
 
             mainLayout = uix.VBox( ...
                 'Parent', obj.figureHandle, ...
@@ -28,28 +30,30 @@ classdef MessageView < appbox.View
 
             obj.text = TextArea( ...
                 'Parent', mainLayout);
-
+            
             % Controls.
-            controlsLayout = uix.HBox( ...
+            obj.controlsLayout = uix.HBox( ...
                 'Parent', mainLayout, ...
                 'Spacing', 7);
-            uix.Empty('Parent', controlsLayout');
+            obj.checkbox = uicontrol( ...
+                'Parent', obj.controlsLayout, ...
+                'Style', 'checkbox');
             obj.button3 = uicontrol( ...
-                'Parent', controlsLayout, ...
+                'Parent', obj.controlsLayout, ...
                 'Style', 'pushbutton', ...
                 'Interruptible', 'off', ...
                 'Callback', @(h,d)notify(obj, 'Button3', appbox.EventData(get(obj.button3, 'String'))));
             obj.button2 = uicontrol( ...
-                'Parent', controlsLayout, ...
+                'Parent', obj.controlsLayout, ...
                 'Style', 'pushbutton', ...
                 'Interruptible', 'off', ...
                 'Callback', @(h,d)notify(obj, 'Button2', appbox.EventData(get(obj.button2, 'String'))));
             obj.button1 = uicontrol( ...
-                'Parent', controlsLayout, ...
+                'Parent', obj.controlsLayout, ...
                 'Style', 'pushbutton', ...
                 'Interruptible', 'off', ...
                 'Callback', @(h,d)notify(obj, 'Button1', appbox.EventData(get(obj.button1, 'String'))));
-            set(controlsLayout, 'Widths', [-1 hpix(75/11) hpix(75/11) hpix(75/11)]);
+            set(obj.controlsLayout, 'Widths', [-1 hpix(75/11) hpix(75/11) hpix(75/11)]);
 
             set(mainLayout, 'Heights', [-1 vpix(23/16)]);
         end
@@ -112,6 +116,12 @@ classdef MessageView < appbox.View
 
         function setButton3Visible(obj, tf)
             set(obj.button3, 'Visible', appbox.onOff(tf));
+            if tf
+                w = appbox.hpix(75/11);
+            else
+                w = 0;
+            end
+            set(obj.controlsLayout, 'Widths', [-1 w appbox.hpix(75/11) appbox.hpix(75/11)]);
         end
 
         function setButton3Default(obj)
@@ -119,6 +129,18 @@ classdef MessageView < appbox.View
                 h = handle(obj.figureHandle);
                 h.setDefaultButton(obj.button3);
             end
+        end
+        
+        function tf = getCheckboxValue(obj)
+            tf = get(obj.checkbox, 'Value');
+        end
+        
+        function setCheckbox(obj, s)
+            set(obj.checkbox, 'String', s);
+        end
+
+        function setCheckboxVisible(obj, tf)
+            set(obj.checkbox, 'Visible', appbox.onOff(tf));
         end
 
     end
