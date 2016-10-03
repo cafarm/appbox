@@ -526,6 +526,8 @@ classdef Text < matlab.mixin.SetGet
             b.Position = [x y w h];
             s.Position = [x y m h];
             
+            drawnow('expose');
+            
         end % redraw
         
     end % helpers
