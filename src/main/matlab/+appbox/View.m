@@ -90,36 +90,18 @@ classdef View < handle
             obj.showMessage(msg, 'Error');
         end
 
-        function [b, tf] = showMessage(obj, text, title, button1, button2, button3, default, width, checkbox) %#ok<INUSL>
+        function [btn, tf] = showMessage(obj, text, title, varargin) %#ok<INUSL>
             if nargin < 3
                 title = '';
             end
-            if nargin < 4
-                button1 = 'OK';
-            end
-            if nargin < 5
-                button2 = [];
-            end
-            if nargin < 6
-                button3 = [];
-            end
-            if nargin < 7
-                default = 1;
-            end
-            if nargin < 8
-                width = [];
-            end
-            if nargin < 9
-                checkbox = [];
-            end
-            presenter = appbox.MessagePresenter(text, title, button1, button2, button3, default, width, checkbox);
+            presenter = appbox.MessagePresenter(text, title, varargin{:});
             presenter.goWaitStop();
             results = presenter.result;
             if ~isempty(results)
-                b = results{1};
+                btn = results{1};
                 tf = results{2};
             else
-                b = [];
+                btn = [];
                 tf = [];
             end
         end

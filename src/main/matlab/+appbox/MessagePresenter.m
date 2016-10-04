@@ -12,28 +12,29 @@ classdef MessagePresenter < appbox.Presenter
     end
 
     methods
-
-        function obj = MessagePresenter(text, title, button1, button2, button3, default, width, checkbox, view)
-            if nargin < 7
-                width = [];
-            end
-            if nargin < 8
-                checkbox = [];
-            end
-            if nargin < 9
-                view = appbox.MessageView();
-            end
-            obj = obj@appbox.Presenter(view);
+        
+        function obj = MessagePresenter(text, title, varargin)
+            ip = inputParser();
+            ip.addParameter('button1', 'OK', @ischar);
+            ip.addParameter('button2', '', @ischar);
+            ip.addParameter('button3', '', @ischar);
+            ip.addParameter('default', 1, @isscalar);
+            ip.addParameter('width', appbox.hpix(400/11), @isscalar);
+            ip.addParameter('checkbox', '', @ischar);
+            ip.addParameter('view', appbox.MessageView(), @(x)isa(x, 'appbox.MessageView'));
+            ip.parse(varargin{:});
+            
+            obj = obj@appbox.Presenter(ip.Results.view);
             obj.view.setWindowStyle('modal');
 
             obj.text = text;
             obj.title = title;
-            obj.button1 = button1;
-            obj.button2 = button2;
-            obj.button3 = button3;
-            obj.default = default;
-            obj.width = width;
-            obj.checkbox = checkbox;
+            obj.button1 = ip.Results.button1;
+            obj.button2 = ip.Results.button2;
+            obj.button3 = ip.Results.button3;
+            obj.default = ip.Results.default;
+            obj.width = ip.Results.width;
+            obj.checkbox = ip.Results.checkbox;
         end
 
     end
