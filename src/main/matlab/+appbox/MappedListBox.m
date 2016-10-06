@@ -14,6 +14,9 @@ classdef MappedListBox < appbox.UIControl %#ok<*MCSUP>
         end
 
         function setString(obj, string)
+            v = get(obj.Control, 'Value');
+            v(v > numel(string)) = [];
+            set(obj.Control, 'Value', v);
             set(obj.Control, 'String', string);
             values = cell(1, numel(string));
             for i = 1:numel(string)
