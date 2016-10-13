@@ -30,6 +30,7 @@ classdef Button < matlab.mixin.SetGet %#ok<*MCSUP>
             obj.JControl.setRequestFocusEnabled(false);
             obj.JControl.setFlyOverAppearance(true);
             obj.JControl.setOpaque(false);
+            set(obj.JControl, 'ActionPerformedCallback', @obj.onActionPerformed);
             obj.set(p.Unmatched);
         end
         
@@ -70,8 +71,20 @@ classdef Button < matlab.mixin.SetGet %#ok<*MCSUP>
             v = appbox.onOff(obj.JControl.isVisible());
         end
         
-        function set.Callback(obj, c)
-            set(obj.JControl, 'ActionPerformedCallback', c);
+    end
+    
+    methods (Access = private)
+        
+        function onActionPerformed(obj, ~, ~)
+            % Remove hover appearance
+            e = obj.JControl.Enabled();
+            obj.JControl.setEnabled(false);
+            obj.JControl.setEnabled(e);
+            
+            if ~isempty(obj.Callback)                
+                event = struct();
+                obj.Callback(obj, event);
+            end
         end
         
     end

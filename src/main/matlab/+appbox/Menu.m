@@ -50,7 +50,19 @@ classdef Menu < matlab.mixin.SetGet
             button.setOpaque(false);
             javaMethodEDT('add', obj.Control, button);
             button = handle(button, 'CallbackProperties');
-            set(button, 'ActionPerformedCallback', p.Results.Callback);
+            set(button, 'ActionPerformedCallback', @(h,d)onActionPerformed(obj, button, p.Results.Callback));
+            
+            function onActionPerformed(obj, btn, cback)
+                % Remove hover appearance
+                e = btn.Enabled();
+                btn.setEnabled(false);
+                btn.setEnabled(e);
+                
+                if ~isempty(cback)
+                    event = struct();
+                    cback(obj, event);
+                end
+            end
             
             t = appbox.ComponentWrapper(button);
             set(t, 'Enable', p.Results.Enable);
