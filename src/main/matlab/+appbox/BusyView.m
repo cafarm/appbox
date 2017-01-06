@@ -35,7 +35,13 @@ classdef BusyView < appbox.View
             
             uix.Empty('Parent', mainLayout);
             
-            set(mainLayout, 'Widths', [-1 32 hpix(150/11) -1]);
+            set(mainLayout, 'Widths', [3 32 -1 3]);
+        end
+        
+        function setViewWidth(obj, w)
+            p = get(obj.figureHandle, 'Position');
+            delta = p(3) - w;
+            set(obj.figureHandle, 'Position', p + [delta/2 0 -delta 0]);
         end
         
         function setTitle(obj, t)
