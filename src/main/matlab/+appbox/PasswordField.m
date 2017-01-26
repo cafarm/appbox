@@ -1,6 +1,7 @@
 classdef PasswordField < matlab.mixin.SetGet %#ok<*MCSUP>
     
     properties
+        Enable
         String
     end
     
@@ -20,6 +21,14 @@ classdef PasswordField < matlab.mixin.SetGet %#ok<*MCSUP>
             obj.JControl.setFocusable(true);
             obj.JControl.putClientProperty('TabCycleParticipant', true);
             obj.set(p.Unmatched);
+        end
+        
+        function set.Enable(obj, e)
+            obj.JControl.setEnabled(appbox.onOff(e));
+        end
+        
+        function e = get.Enable(obj)
+            e = appbox.onOff(obj.JControl.isEnabled());
         end
         
         function s = get.String(obj)
