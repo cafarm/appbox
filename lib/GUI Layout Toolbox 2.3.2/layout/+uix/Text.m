@@ -1,5 +1,14 @@
-classdef Text < matlab.mixin.SetGet
-    % A drop-in replacement for uix.Text that scales better when using Java system fonts.
+classdef ( Hidden ) Text < matlab.mixin.SetGet
+    %uix.Text  Text control
+    %
+    %  t = uix.Text(p1,v1,p2,v2,...) constructs a text control and sets
+    %  parameter p1 to value v1, etc.
+    %
+    %  A text control adds functionality to a uicontrol of Style text:
+    %  * Set VerticalAlignment to 'top', 'middle' or 'bottom'
+    %  * Fire a Callback when the user clicks on the text
+    %
+    %  See also: uicontrol
     
     %  Copyright 2009-2015 The MathWorks, Inc.
     %  $Revision: 1574 $ $Date: 2017-11-07 11:42:03 +0000 (Tue, 07 Nov 2017) $
@@ -53,7 +62,6 @@ classdef Text < matlab.mixin.SetGet
     properties( Access = private )
         Container % container
         Checkbox % checkbox, used for label
-        JCheckbox
         Screen % text, used for covering checkbox
         VerticalAlignment_ = 'top' % backing for VerticalAlignment
         Dirty = false % flag
@@ -178,9 +186,7 @@ classdef Text < matlab.mixin.SetGet
         
         function value = get.Extent( obj )
             
-            %value = obj.Checkbox.Extent;
-            sz = obj.JCheckbox.getPreferredSize();
-            value = [0, 0, sz.width, sz.height];
+            value = obj.Checkbox.Extent;
             
         end % get.Extent
         
@@ -440,13 +446,6 @@ classdef Text < matlab.mixin.SetGet
             
         end % set.Visible
         
-        function c = get.JCheckbox(obj)
-            if isempty(obj.JCheckbox)
-                obj.JCheckbox = findjobj(obj.Checkbox);
-            end
-            c = obj.JCheckbox;
-        end
-        
     end % accessors
     
     methods( Access = private )
@@ -499,14 +498,11 @@ classdef Text < matlab.mixin.SetGet
             
             c = obj.Container;
             b = obj.Checkbox;
-            jb = obj.JCheckbox;
             s = obj.Screen;
             bo = hgconvertunits( ancestor( obj, 'figure' ), ...
                 [0 0 1 1], 'normalized', 'pixels', c ); % bounds
             m = obj.Margin;
-            %e = b.Extent;
-            sz = jb.getPreferredSize();
-            e = [0, 0, sz.width, sz.height];
+            e = b.Extent;
             switch b.HorizontalAlignment
                 case 'left'
                     x = 1 - m;
@@ -528,8 +524,6 @@ classdef Text < matlab.mixin.SetGet
             b.Position = [x y w h];
             s.Position = [x y m h];
             
-            drawnow('expose');
-            
         end % redraw
         
     end % helpers
@@ -539,15 +533,14 @@ end % classdef
 function o = checkBoxLabelOffset()
 %checkBoxLabelOffset  Horizontal offset to checkbox label
 
-
-if verLessThan( 'MATLAB', '8.6' ) % R2015b
-    o = 18;
-else
-    o = 16;
-end
-
 if ismac
-    o = o + 4;
+    o = 20;
+else
+    if verLessThan( 'MATLAB', '8.6' ) % R2015b
+        o = 18;
+    else
+        o = 16;
+    end
 end
 
 end % margin
