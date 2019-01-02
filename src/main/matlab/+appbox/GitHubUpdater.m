@@ -37,6 +37,14 @@ classdef GitHubUpdater < handle
             tf = true;
         end
         
+        function showUpdate(obj)
+            if isempty(obj.update)
+                error('No update available');
+            end
+            
+            web(obj.update.html_url);
+        end
+        
         function downloadUpdate(obj)
             if isempty(obj.update)
                 error('No update available');

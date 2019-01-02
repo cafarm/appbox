@@ -25,7 +25,7 @@ classdef UpdatePresenter < appbox.Presenter
             update = obj.updater.update;
             obj.view.setTitle(['A new version of ' host.name ' is available!']);
             obj.view.setBody([host.name ' ' update.tag_name ' is now available. You have ' host.version '. ', ...
-                'Would you like to download and install it now?']);
+                'Would you like to view it now?']);
             obj.view.setReleaseNotes(update.body);
         end
 
@@ -34,7 +34,7 @@ classdef UpdatePresenter < appbox.Presenter
 
             v = obj.view;
             obj.addListener(v, 'KeyPress', @obj.onViewKeyPress);
-            obj.addListener(v, 'Install', @obj.onViewSelectedInstall);
+            obj.addListener(v, 'Show', @obj.onViewSelectedShow);
             obj.addListener(v, 'Later', @obj.onViewSelectedLater);
         end
 
@@ -45,28 +45,14 @@ classdef UpdatePresenter < appbox.Presenter
         function onViewKeyPress(obj, ~, event)
             switch event.data.Key
                 case 'return'
-                    obj.onViewSelectedInstall();
+                    obj.onViewSelectedShow();
                 case 'escape'
                     obj.onViewSelectedLater();
             end
         end
 
-        function onViewSelectedInstall(obj, ~, ~)
-            try
-                p = obj.view.showBusy('Downloading...');
-                obj.updater.downloadUpdate();
-                delete(p);
-
-                p = obj.view.showBusy('Installing...');
-                info = obj.updater.installUpdate();
-                delete(p);
-            catch x
-                delete(p);
-                obj.view.showError(x.message);
-                return;
-            end
-
-            obj.result = info;
+        function onViewSelectedShow(obj, ~, ~)
+            obj.updater.showUpdate();
             obj.stop();
         end
 

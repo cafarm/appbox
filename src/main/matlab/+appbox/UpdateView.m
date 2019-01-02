@@ -1,7 +1,7 @@
 classdef UpdateView < appbox.View
     
     events
-        Install
+        Show
         Later
     end
     
@@ -9,7 +9,7 @@ classdef UpdateView < appbox.View
         titleLabel
         bodyText
         releaseNotesText
-        installButton
+        showButton
         laterButton
     end
     
@@ -44,17 +44,17 @@ classdef UpdateView < appbox.View
                 'Scrollable', true);
             set(updateLayout, 'Heights', [vpix(16/11) vpix(32/11) vpix(16/11) -1]);
             
-            % Install/Later controls.
+            % Show/Later controls.
             controlsLayout = uix.HBox( ...
                 'Parent', mainLayout, ...
                 'Spacing', 7);
             uix.Empty('Parent', controlsLayout);
-            obj.installButton = uicontrol( ...
+            obj.showButton = uicontrol( ...
                 'Parent', controlsLayout, ...
                 'Style', 'pushbutton', ...
-                'String', 'Install', ...
+                'String', 'Show', ...
                 'Interruptible', 'off', ...
-                'Callback', @(h,d)notify(obj, 'Install'));
+                'Callback', @(h,d)notify(obj, 'Show'));
             obj.laterButton = uicontrol( ...
                 'Parent', controlsLayout, ...
                 'Style', 'pushbutton', ...
@@ -68,7 +68,7 @@ classdef UpdateView < appbox.View
             % Set add button to appear as the default button.
             try %#ok<TRYNC>
                 h = handle(obj.figureHandle);
-                h.setDefaultButton(obj.installButton);
+                h.setDefaultButton(obj.showButton);
             end
         end
         
